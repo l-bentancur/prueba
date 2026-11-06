@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reserva de materiales - Liceo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Sistema interno</p>
+          <h1>Gestión de reservas del liceo</h1>
+        </div>
+        <button id="resetDataBtn" class="ghost-button" type="button">Restablecer datos</button>
+      </header>
+
+      <main class="dashboard">
+        <section class="stats-grid" aria-label="Resumen de reservas">
+          <article class="stat-card primary">
+            <span class="stat-label">Materiales activos</span>
+            <strong id="materialsCount">0</strong>
+          </article>
+          <article class="stat-card accent">
+            <span class="stat-label">Reservas confirmadas</span>
+            <strong id="confirmedReservations">0</strong>
+          </article>
+          <article class="stat-card success">
+            <span class="stat-label">Disponibles ahora</span>
+            <strong id="availableCount">0</strong>
+          </article>
+          <article class="stat-card warning">
+            <span class="stat-label">Pendientes</span>
+            <strong id="pendingCount">0</strong>
+          </article>
+        </section>
+
+        <section class="panel-grid">
+          <div class="panel">
+            <div class="panel-header">
+              <h2>Cargar material</h2>
+            </div>
+            <form id="materialForm" class="form-grid">
+              <label>
+                Nombre
+                <input type="text" id="materialName" name="materialName" placeholder="TV 55", required />
+              </label>
+              <label>
+                Categoría
+                <select id="materialCategory" name="materialCategory" required>
+                  <option value="Audiovisual">Audiovisual</option>
+                  <option value="Informática">Informática</option>
+                  <option value="Laboratorio">Laboratorio</option>
+                  <option value="Tecnológico">Tecnológico</option>
+                  <option value="Matemática">Matemática</option>
+                  <option value="Dibujo">Dibujo</option>
+                  <option value="General">General</option>
+                </select>
+              </label>
+              <label>
+                Cantidad total
+                <input type="number" id="materialTotal" name="materialTotal" min="1" value="1" required />
+              </label>
+              <label>
+                Ubicación
+                <input type="text" id="materialLocation" name="materialLocation" placeholder="Sala audiovisual" required />
+              </label>
+              <label class="full-width">
+                Observaciones
+                <textarea id="materialNotes" name="materialNotes" rows="3" placeholder="Detalles de uso, mantenimiento, etc."></textarea>
+              </label>
+              <button class="primary-button" type="submit">Agregar material</button>
+            </form>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <h2>Registrar reserva</h2>
+            </div>
+            <form id="reservationForm" class="form-grid">
+              <label>
+                Persona
+                <input type="text" id="studentName" name="studentName" placeholder="Juan Pérez" required />
+              </label>
+              <label>
+                Tipo
+                <select id="reservationType" name="reservationType">
+                  <option value="Docente">Docente</option>
+                  <option value="Estudiante">Estudiante</option>
+                  <option value="Administrativo">Administrativo</option>
+                </select>
+              </label>
+              <label>
+                Material
+                <select id="reservationMaterial" name="reservationMaterial" required></select>
+              </label>
+              <label>
+                Cantidad
+                <input type="number" id="reservationQty" name="reservationQty" min="1" value="1" required />
+              </label>
+              <label>
+                Fecha desde
+                <input type="date" id="startDate" name="startDate" required />
+              </label>
+              <label>
+                Fecha hasta
+                <input type="date" id="endDate" name="endDate" required />
+              </label>
+              <label class="full-width">
+                Observaciones
+                <textarea id="reservationNotes" name="reservationNotes" rows="3" placeholder="Curso, tarea o motivo de la reserva"></textarea>
+              </label>
+              <button class="primary-button" type="submit">Guardar reserva</button>
+            </form>
+          </div>
+        </section>
+
+        <section class="panel list-panel">
+          <div class="panel-header with-actions">
+            <h2>Inventario</h2>
+            <select id="categoryFilter" aria-label="Filtrar materiales por categoría">
+              <option value="Todos">Todos</option>
+              <option value="Audiovisual">Audiovisual</option>
+              <option value="Informática">Informática</option>
+              <option value="Laboratorio">Laboratorio</option>
+              <option value="Tecnológico">Tecnológico</option>
+              <option value="Matemática">Matemática</option>
+              <option value="Dibujo">Dibujo</option>
+              <option value="General">General</option>
+            </select>
+          </div>
+          <div id="materialsList" class="material-list"></div>
+        </section>
+
+        <section class="panel list-panel">
+          <div class="panel-header">
+            <h2>Reservas vigentes</h2>
+          </div>
+          <div id="reservationsList" class="reservation-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
