@@ -1,45 +1,34 @@
-# Liceo - Sistema de gestión de reservas
+# Liceo — sistema de reservas (beta de prueba)
 
-Esta aplicación web permite registrar y controlar los materiales que se prestan en un liceo, como:
+Aplicación web sencilla para probar la gestión de materiales y reservas de un liceo. Incluye ejemplos de TV, computadoras, laboratorio de biología y física, materiales tecnológicos, calculadoras y recursos de dibujo.
 
-- TV y equipos audiovisuales
-- Computadoras y accesorios informáticos
-- Laboratorios de biología y física
-- Material tecnológico
-- Caja de calculadoras
-- Reglas y materiales de dibujo
+## Probar en tu computadora
 
-## Características
+1. Descargá o cloná este repositorio y abrí una terminal en la carpeta del proyecto.
+2. Iniciá un servidor local:
 
-- Alta de materiales con categoría, cantidad total y ubicación
-- Registro de reservas por persona, tipo, material y fechas
-- Estado de cada reserva: pendiente, confirmada, devuelta o cancelada
-- Dashboard con conteo general de materiales y disponibilidad
-- Filtro por categorías
-- Persistencia local con `localStorage`
+   ```bash
+   python -m http.server 8000
+   ```
 
-## Cómo abrirla
+   En algunos equipos el comando es `python3 -m http.server 8000`.
+3. Abrí <http://localhost:8000> en el navegador.
+4. Ingresá cualquier nombre y el código de prueba **liceo2026**.
 
-1. Clona este repositorio.
-2. Abre `index.html` directamente en un navegador, o ejecuta un servidor local:
+También podés abrir `index.html` directamente, aunque es preferible usar un servidor local.
 
-```bash
-python -m http.server 8000
-```
+## Qué se puede probar
 
-3. Luego visita:
+- Inicio de sesión demostrativo y cierre de sesión.
+- Alta, edición y eliminación de materiales.
+- Registro, confirmación, devolución y cancelación de reservas.
+- Historial de reservas y eliminación permanente de registros.
+- Disponibilidad por rango de fechas, con validación para evitar reservas superpuestas que excedan el inventario.
+- Filtro por categoría y resumen del inventario.
+- Guardado de cambios en `localStorage` del navegador.
 
-```text
-http://localhost:8000
-```
+## Importante: es una beta local
 
-## Archivos principales
+El login es únicamente una pantalla de demostración: el código está visible en el JavaScript y **no es una medida de seguridad**. Los datos se guardan solo en el navegador y no se sincronizan entre personas, equipos ni navegadores. No uses información personal real ni dependas de esta beta para administrar reservas oficiales. Para uso compartido del liceo hace falta un servidor, autenticación segura y una base de datos.
 
-- `index.html`: estructura principal de la interfaz
-- `styles.css`: estilos visuales del sistema
-- `script.js`: lógica de reservas y manejo de datos
-
-## Nota
-
-Es una versión funcional de frontend para gestión de inventario y reservas, lista para extenderse con backend, autenticación o base de datos real.
-
+El botón **Restablecer demo** reemplaza los datos locales por el inventario de ejemplo.

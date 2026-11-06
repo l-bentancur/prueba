@@ -3,290 +3,110 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reserva de materiales - Liceo</title>
+    <meta name="theme-color" content="#183b34" />
+    <title>Reservas del liceo</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="app-shell">
+    <section id="loginScreen" class="login-screen" aria-labelledby="loginTitle">
+      <form id="loginForm" class="login-card">
+        <div class="brand-mark" aria-hidden="true">L</div>
+        <p class="eyebrow">Sistema interno · Beta de prueba</p>
+        <h1 id="loginTitle">Reservas del liceo</h1>
+        <p class="login-copy">Ingresá tu nombre y el código de prueba para continuar.</p>
+        <label>Tu nombre
+          <input id="loginName" name="loginName" autocomplete="name" required maxlength="60" placeholder="Ej. Ana López" />
+        </label>
+        <label>Código de acceso de prueba
+          <input id="loginCode" name="loginCode" type="password" autocomplete="current-password" required />
+        </label>
+        <p id="loginError" class="form-error" role="alert" hidden></p>
+        <button class="primary-button" type="submit">Ingresar</button>
+        <p class="login-note">Código demo: <strong>liceo2026</strong>. Este acceso de prueba no protege datos reales.</p>
+      </form>
+    </section>
+
+    <div id="app" class="app-shell" hidden>
       <header class="topbar">
-        <div>
-          <p class="eyebrow">Sistema interno</p>
-          <h1>Gestión de reservas del liceo</h1>
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true">L</div>
+          <div><p class="eyebrow">Panel de gestión · Beta</p><h1>Reservas del liceo</h1></div>
         </div>
-        <button id="resetDataBtn" class="ghost-button" type="button">Restablecer datos</button>
+        <div class="topbar-actions">
+          <span id="welcomeLabel" class="welcome-label"></span>
+          <button id="resetDataBtn" class="secondary-button" type="button">Restablecer demo</button>
+          <button id="logoutBtn" class="text-button" type="button">Salir</button>
+        </div>
       </header>
 
-      <main class="dashboard">
-        <section class="stats-grid" aria-label="Resumen de reservas">
-          <article class="stat-card primary">
-            <span class="stat-label">Materiales activos</span>
-            <strong id="materialsCount">0</strong>
-          </article>
-          <article class="stat-card accent">
-            <span class="stat-label">Reservas confirmadas</span>
-            <strong id="confirmedReservations">0</strong>
-          </article>
-          <article class="stat-card success">
-            <span class="stat-label">Disponibles ahora</span>
-            <strong id="availableCount">0</strong>
-          </article>
-          <article class="stat-card warning">
-            <span class="stat-label">Pendientes</span>
-            <strong id="pendingCount">0</strong>
-          </article>
+      <main>
+        <section class="intro-row">
+          <div><p class="eyebrow">Inventario escolar</p><h2>Todo listo para organizar tus clases.</h2><p class="muted">Gestioná equipos, espacios y materiales desde un solo lugar.</p></div>
+          <span class="beta-tag"><span></span> Entorno de prueba</span>
+        </section>
+
+        <section class="stats-grid" aria-label="Resumen">
+          <article class="stat-card"><span class="stat-icon">▦</span><span class="stat-label">Materiales</span><strong id="materialsCount">0</strong><small>elementos en inventario</small></article>
+          <article class="stat-card"><span class="stat-icon violet">▤</span><span class="stat-label">Confirmadas</span><strong id="confirmedReservations">0</strong><small>reservas aprobadas</small></article>
+          <article class="stat-card"><span class="stat-icon green">✓</span><span class="stat-label">Disponibles</span><strong id="availableCount">0</strong><small>unidades disponibles hoy</small></article>
+          <article class="stat-card"><span class="stat-icon amber">◷</span><span class="stat-label">Pendientes</span><strong id="pendingCount">0</strong><small>reservas por revisar</small></article>
         </section>
 
         <section class="panel-grid">
-          <div class="panel">
-            <div class="panel-header">
-              <h2>Cargar material</h2>
-            </div>
+          <section class="panel" aria-labelledby="materialFormTitle">
+            <div class="panel-heading"><div><p class="eyebrow">Inventario</p><h2 id="materialFormTitle">Agregar material</h2></div><span class="heading-icon">＋</span></div>
             <form id="materialForm" class="form-grid">
-              <label>
-                Nombre
-                <input type="text" id="materialName" name="materialName" placeholder="TV 55", required />
-              </label>
-              <label>
-                Categoría
-                <select id="materialCategory" name="materialCategory" required>
-                  <option value="Audiovisual">Audiovisual</option>
-                  <option value="Informática">Informática</option>
-                  <option value="Laboratorio">Laboratorio</option>
-                  <option value="Tecnológico">Tecnológico</option>
-                  <option value="Matemática">Matemática</option>
-                  <option value="Dibujo">Dibujo</option>
-                  <option value="General">General</option>
-                </select>
-              </label>
-              <label>
-                Cantidad total
-                <input type="number" id="materialTotal" name="materialTotal" min="1" value="1" required />
-              </label>
-              <label>
-                Ubicación
-                <input type="text" id="materialLocation" name="materialLocation" placeholder="Sala audiovisual" required />
-              </label>
-              <label class="full-width">
-                Observaciones
-                <textarea id="materialNotes" name="materialNotes" rows="3" placeholder="Detalles de uso, mantenimiento, etc."></textarea>
-              </label>
-              <button class="primary-button" type="submit">Agregar material</button>
+              <label>Nombre<input type="text" id="materialName" name="materialName" placeholder="TV 55 pulgadas" required maxlength="80" /></label>
+              <label>Categoría<select id="materialCategory" name="materialCategory" required><option>Audiovisual</option><option>Informática</option><option>Laboratorio</option><option>Tecnológico</option><option>Matemática</option><option>Dibujo</option><option>General</option></select></label>
+              <label>Cantidad total<input type="number" id="materialTotal" name="materialTotal" min="1" max="9999" value="1" required /></label>
+              <label>Ubicación<input type="text" id="materialLocation" name="materialLocation" placeholder="Sala audiovisual" required maxlength="100" /></label>
+              <label class="full-width">Observaciones<textarea id="materialNotes" name="materialNotes" rows="2" maxlength="300" placeholder="Detalles de uso o mantenimiento"></textarea></label>
+              <button class="primary-button full-width" type="submit">Agregar al inventario <span>→</span></button>
             </form>
-          </div>
+          </section>
 
-          <div class="panel">
-            <div class="panel-header">
-              <h2>Registrar reserva</h2>
-            </div>
+          <section class="panel" aria-labelledby="reservationFormTitle">
+            <div class="panel-heading"><div><p class="eyebrow">Agenda</p><h2 id="reservationFormTitle">Nueva reserva</h2></div><span class="heading-icon lavender">▣</span></div>
             <form id="reservationForm" class="form-grid">
-              <label>
-                Persona
-                <input type="text" id="studentName" name="studentName" placeholder="Juan Pérez" required />
-              </label>
-              <label>
-                Tipo
-                <select id="reservationType" name="reservationType">
-                  <option value="Docente">Docente</option>
-                  <option value="Estudiante">Estudiante</option>
-                  <option value="Administrativo">Administrativo</option>
-                </select>
-              </label>
-              <label>
-                Material
-                <select id="reservationMaterial" name="reservationMaterial" required></select>
-              </label>
-              <label>
-                Cantidad
-                <input type="number" id="reservationQty" name="reservationQty" min="1" value="1" required />
-              </label>
-              <label>
-                Fecha desde
-                <input type="date" id="startDate" name="startDate" required />
-              </label>
-              <label>
-                Fecha hasta
-                <input type="date" id="endDate" name="endDate" required />
-              </label>
-              <label class="full-width">
-                Observaciones
-                <textarea id="reservationNotes" name="reservationNotes" rows="3" placeholder="Curso, tarea o motivo de la reserva"></textarea>
-              </label>
-              <button class="primary-button" type="submit">Guardar reserva</button>
+              <label>Persona responsable<input type="text" id="studentName" name="studentName" placeholder="Nombre y apellido" required maxlength="80" /></label>
+              <label>Tipo<select id="reservationType" name="reservationType"><option>Docente</option><option>Estudiante</option><option>Administrativo</option></select></label>
+              <label class="full-width">Material o espacio<select id="reservationMaterial" name="reservationMaterial" required></select></label>
+              <label>Cantidad<input type="number" id="reservationQty" name="reservationQty" min="1" value="1" required /></label>
+              <span class="form-hint" id="availabilityHint">Seleccioná un material para ver disponibilidad.</span>
+              <label>Desde<input type="date" id="startDate" name="startDate" required /></label>
+              <label>Hasta<input type="date" id="endDate" name="endDate" required /></label>
+              <label class="full-width">Motivo / observaciones<textarea id="reservationNotes" name="reservationNotes" rows="2" maxlength="300" placeholder="Curso, actividad o motivo"></textarea></label>
+              <button class="primary-button full-width" type="submit">Guardar reserva <span>→</span></button>
             </form>
-          </div>
+          </section>
         </section>
 
-        <section class="panel list-panel">
-          <div class="panel-header with-actions">
-            <h2>Inventario</h2>
-            <select id="categoryFilter" aria-label="Filtrar materiales por categoría">
-              <option value="Todos">Todos</option>
-              <option value="Audiovisual">Audiovisual</option>
-              <option value="Informática">Informática</option>
-              <option value="Laboratorio">Laboratorio</option>
-              <option value="Tecnológico">Tecnológico</option>
-              <option value="Matemática">Matemática</option>
-              <option value="Dibujo">Dibujo</option>
-              <option value="General">General</option>
-            </select>
-          </div>
+        <section class="panel list-panel" aria-labelledby="inventoryTitle">
+          <div class="section-heading"><div><p class="eyebrow">Recursos del centro</p><h2 id="inventoryTitle">Inventario</h2></div><label class="filter-label">Categoría<select id="categoryFilter" aria-label="Filtrar por categoría"><option value="Todos">Todas</option><option>Audiovisual</option><option>Informática</option><option>Laboratorio</option><option>Tecnológico</option><option>Matemática</option><option>Dibujo</option><option>General</option></select></label></div>
           <div id="materialsList" class="material-list"></div>
         </section>
 
-        <section class="panel list-panel">
-          <div class="panel-header">
-            <h2>Reservas vigentes</h2>
-          </div>
+        <section class="panel list-panel" aria-labelledby="reservationsTitle">
+          <div class="section-heading reservation-heading"><div><p class="eyebrow">Seguimiento</p><h2 id="reservationsTitle">Reservas</h2></div><div class="view-tabs" role="tablist" aria-label="Vistas de reservas"><button class="view-tab active" id="activeTab" type="button" role="tab" aria-selected="true">Activas <span id="activeReservationsCount">0</span></button><button class="view-tab" id="historyTab" type="button" role="tab" aria-selected="false">Historial</button></div></div>
           <div id="reservationsList" class="reservation-list"></div>
         </section>
+        <footer class="app-footer">Beta de prueba · Los datos se guardan en este navegador y no se comparten entre dispositivos.</footer>
       </main>
     </div>
+
+    <dialog id="editMaterialDialog" class="edit-dialog">
+      <form id="editMaterialForm" class="dialog-card">
+        <div class="panel-heading"><div><p class="eyebrow">Inventario</p><h2>Editar material</h2></div><button id="closeEditDialog" class="icon-button" type="button" aria-label="Cerrar">×</button></div>
+        <input type="hidden" id="editMaterialId" />
+        <label>Nombre<input id="editMaterialName" required maxlength="80" /></label>
+        <label>Categoría<select id="editMaterialCategory"><option>Audiovisual</option><option>Informática</option><option>Laboratorio</option><option>Tecnológico</option><option>Matemática</option><option>Dibujo</option><option>General</option></select></label>
+        <label>Cantidad total<input id="editMaterialTotal" type="number" min="1" max="9999" required /></label>
+        <label>Ubicación<input id="editMaterialLocation" required maxlength="100" /></label>
+        <label>Observaciones<textarea id="editMaterialNotes" rows="3" maxlength="300"></textarea></label>
+        <div class="dialog-actions"><button class="secondary-button" id="cancelEditDialog" type="button">Cancelar</button><button class="primary-button" type="submit">Guardar cambios</button></div>
+      </form>
+    </dialog>
 
     <script src="script.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
